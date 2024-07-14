@@ -1,4 +1,4 @@
-package com.jaybee291998.loxl
+package com.jaybee291998.lox;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,8 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.uitl.List;
+import java.util.List;
+import java.util.Scanner;
 
 public class Lox {
 	public static void main(String[] args) {
@@ -20,9 +21,9 @@ public class Lox {
 		}
 	}
 
-	public static void runPrompt(String path) throws IOException {
+	public static void runFile(String path) throws IOException {
 		byte[] bytes = Files.readAllBytes(Path.get(path));
-		return (new String(bytes, Charset.defaultCharset()));
+		run(new String(bytes, Charset.defaultCharset()));
 	}
 
 	public static void runPrompt() throws IOException {
@@ -34,6 +35,15 @@ public class Lox {
 			String line = reader.readLine();
 			if (line == null) break;
 			run(line);	
+		}
+	}
+
+	public static void run(String source) {
+		Scanner scanner = new Scanner(source);
+		List<Token> token = scanner.scanTokens();
+
+		for(Token token : tokens) {
+			System.out.println(token);
 		}
 	}
 }
