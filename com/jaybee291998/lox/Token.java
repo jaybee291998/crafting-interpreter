@@ -1,5 +1,7 @@
 package com.jaybee291998.lox;
 
+import com.jaybee291998.lox.TokenType;
+
 class Token {
 	final TokenType type;
 	final String lexeme;
