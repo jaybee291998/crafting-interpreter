@@ -4,8 +4,8 @@ import java.util.List;
 
 abstract class Expr {
 	static class Binary extends Expr {
-		Binary(Expr Left, Token operator, Expr right) {
-			this.Left = Left;
+		Binary(Expr left, Token operator, Expr right) {
+			this.left = left;
 			this.operator = operator;
 			this.right = right;
 		}
@@ -14,7 +14,7 @@ abstract class Expr {
 		<R> R accept(Visitor<R> visitor) {
 			return visitor.visitBinaryExpr(this);
 		}
-		final Expr Left;
+		final Expr left;
 		final Token operator;
 		final Expr right;
 	}
